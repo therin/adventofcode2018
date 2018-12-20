@@ -49,12 +49,17 @@ for c in alpha:
 
 answer = 9999999999999
 for letter in alpha:
-     s2 = [c for c in input if c != letter.lower() and c != letter.upper()]
+     # filter out current letter
+     filteredInput = [c for c in input if c != letter.lower() and c != letter.upper()]
      stack = []
-     for c in s2:
+     for c in filteredInput:
          if stack and c == M[stack[-1]]:
+             # if stack exists and current letter is reacting with previous letter
+             print()
              stack.pop()
          else:
              stack.append(c)
+     # calc the length of existing stack
      answer = min(answer, len(stack))
+     print(f'minimal for {letter}: {len(stack)}')
 print(answer)
